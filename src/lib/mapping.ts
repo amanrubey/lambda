@@ -15,6 +15,7 @@ export type Contact = {
   personHasMoved?: string;
   jobTitle?: string;
   jobFunction?: { name: string; department: string }[];
+  socialLinks?: {[name: string]: string | null};
 };
 
 export function mapApolloContact(data: AppolloContact): Contact {
@@ -33,7 +34,13 @@ export function mapApolloContact(data: AppolloContact): Contact {
     street: person.organization.street_address,
     city: person.city,
     jobTitle: person.title,
-    jobFunction
+    jobFunction,
+    socialLinks: {
+      linkedinUrl: person.linkedin_url,
+      githubUrl: person.github_url,
+      twitterUrl: person.twitter_url,
+      facebookUrl: person.facebook_url
+    }
   };
   return contact;
 }
@@ -55,6 +62,9 @@ export function mapCognismContact(data: CognismContact): Contact {
     city: person.city,
     jobTitle: person.jobTitle,
     jobFunction,
+    socialLinks: {
+      linkedinUrl: person.linkedinURL
+    }
   };
 
   return contact;
@@ -73,6 +83,9 @@ export function mapLinkedinContact(person: LinkedinContact): Contact {
     city: person.location,
     jobTitle: person.job_title,
     jobFunction,
+    socialLinks: {
+      linkedinUrl: person.linkedin_url,
+    }
   };
 
   return contact;
@@ -110,6 +123,9 @@ export function mapLushaContact(data: LushaContact): Contact {
     city: person.location.raw_location.split(',')[0].trim(),
     jobTitle: person.jobTitle.title,
     jobFunction,
+    socialLinks: {
+      linkedinUrl: person.socialLinks.linkedin? person.socialLinks.linkedin: null
+    }
   };
 
   return contact;

@@ -101,6 +101,13 @@ export default function Home() {
       lusha_contacts_sanitized.jobFunction,
       zoomInfo_contacts_sanitized.jobFunction,
     ]),
+    socialLinks: chooseValue([
+      appollo_contacts_sanitized.socialLinks,
+      cognism_contacts_sanitized.socialLinks,
+      linkedin_contacts_sanitized.socialLinks,
+      lusha_contacts_sanitized.socialLinks,
+      zoomInfo_contacts_sanitized.socialLinks,
+    ]),
   };
 
   function chooseValue<T>(values: (T | undefined)[]): T | undefined {
